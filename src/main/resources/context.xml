@@ -3,18 +3,20 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation= "http://www.springframework.org/schema/aop http://www.springframework.org/schema/spring-aop-4.0.xsd
+       xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/spring-aop-4.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/spring-context-4.0.xsd
                http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<context:component-scan base-package="java.*"/>
+    <context:component-scan base-package="by.java.*"/>
 
     <aop:config>
-        <aop:aspect id="log" ref="loggins.MyLogger"/>
-        <aop:pointcut id="getValue" expression="execution(*objects.SomeService.*(..))"/>
-        <
+        <aop:aspect id="log" ref="myLogger">
+            <aop:pointcut id="getValue" expression="execution(* by.java.training.spring.objects.SomeService.*(..))"/>
+            <aop:before pointcut-ref="getValue" method="init"/>
+            <aop:after pointcut-ref="getValue" method="close"/>
+            <aop:after-returning pointcut-ref="getValue" returning="obj" method="printValue"/>
+        </aop:aspect>
     </aop:config>
-
 
 
 </beans>

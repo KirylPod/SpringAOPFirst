@@ -1,9 +1,9 @@
-package objects;
+package by.java.training.spring.objects;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class SomeService {
+public class SomeService {                    // Целевой
 
     public int getIntValue(){
         return 5;
